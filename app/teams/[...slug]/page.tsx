@@ -22,7 +22,7 @@ export default async function Team({ params }: { params: { slug: string[] } }) {
       <h1 className='text-2xl font-medium mb-2'>Alerts </h1>
       <div className='grid grid-cols-5 gap-2'>
         {alerts.map(metric =>
-          <div className='rounded-md border border-slate-200 bg-slate-50 p-2'>
+          <div className='rounded-md border border-slate-200 bg-slate-50 p-2 hover:shadow-lg'>
             <p className='text-2xl font-medium inline'>{metric.value}</p>
             <p className='text-sm font-medium text-slate-400 inline'> {metric.meta}</p>
             <p className='text-sm font-medium text-slate-400'>{metric.title}</p>
