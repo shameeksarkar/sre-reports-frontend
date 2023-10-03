@@ -15,7 +15,7 @@ export default async function Team({ params }: { params: { slug: string[] } }) {
   return (
     <main>
       <h1 className='text-2xl font-medium'>{team.name}</h1>
-      <h6 className='text-slate-400'>
+      <h6 className='text-slate-500'>
         Summarised Report for {formatDate(date)}
       </h6>
       <br />
@@ -24,19 +24,10 @@ export default async function Team({ params }: { params: { slug: string[] } }) {
       <div className='grid grid-cols-4 gap-2'>
         {alerts.map(metric =>
           <div className='relative rounded-md border border-slate-200 p-4 overflow-hidden hover:shadow-lg'>
+            <div className='absolute bottom-0 right-1'><Chart /></div>
             <p className='text-slate-500'>{metric.title}</p>
             <Badge badge={metric.badge} />
             <p className='text-2xl font-bold inline'>{metric.value}</p>
-
-
-
-
-            {/* <p className='text-slate-400 inline'> {metric.meta}</p> */}
-            
-
-            <div className='absolute bottom-0 right-1'>
-              <Chart />
-            </div>
           </div>
         )}
       </div>
