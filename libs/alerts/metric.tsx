@@ -1,14 +1,22 @@
+export class AlertsResponse {
+  alerts: Metric[]
+
+  constructor(alerts: Metric[]) {
+    this.alerts = alerts
+  }
+}
+
 export class Metric {
-  name: string
-  desc?: string
+  title: string
   value: string
   badge: Badge
+  meta?: string
 
-  constructor(name: string, value: string, badge: Badge, desc?: string) {
-    this.name = name
-    this.desc = desc
+  constructor(title: string, value: string, badge: Badge, meta?: string) {
+    this.title = title
     this.value = value
     this.badge = badge
+    this.meta = meta
   }
 }
 

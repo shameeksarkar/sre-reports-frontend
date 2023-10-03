@@ -1,43 +1,16 @@
-import { Metric, Badge } from "./metric"
-import { callApi } from "./opsgenie/api"
+import { AlertsResponse } from "./metric"
 
-export async function fetchMetrics(team: string, date: Date): Promise<Metric[]> {
-  const alerts = await callApi(team, date)
-  const acknowledged = alerts.filter(alert => alert.report.ackTime != alert.report.closeTime)
-  const acknowledgeRate = (100 * acknowledged.length / alerts.length) || 100
-
-  const meanTimeToRecover = alerts.reduce((sec, alert) => sec + alert.report.closeTime / 1000, 0) / alerts.length || 0
-  const meanTimeToAcknowledge = acknowledged.reduce((sec, alert) => sec + alert.report.ackTime / 1000, 0) / acknowledged.length || 0
-
-  return [
-    new Metric(
-      'Number of Alerts',
-      alerts.length.toLocaleString(),
-      alerts.length <= 10 ? Badge.Good : Badge.Poor
-    ),
-    new Metric(
-      'Acknowledged Alerts',
-      acknowledged.length.toLocaleString(),
-      acknowledgeRate >= 50 ? Badge.Good : Badge.Poor,
-      acknowledgeRate.toString() + '%'
-    ),
-    new Metric(
-      'Mean Time to Recover',
-      readable(meanTimeToRecover),
-      meanTimeToRecover < 300 ? Badge.Good : Badge.Poor
-    ),
-    new Metric(
-      'Mean Time to Acknowledge',
-      readable(meanTimeToAcknowledge),
-      meanTimeToAcknowledge < 120 ? Badge.Good : Badge.Poor
-    )
-  ]
+export async function fetchAlerts(team: string, date: Date): Promise<AlertsResponse> {
+    const params = new URLSearchParams({ 'team': team, 'date': fmtDate(date) })
+    const response = await fetch('http://0.0.0.0:8000/alerts?' + params, { method: 'GET'})
+    return response.json()
 }
 
-function readable(sec: number): string {
-  const str: string[] = []
-  const min = Math.floor(sec / 60)
-  if (min > 0) str.push(`${min}m`)
-  str.push(`${Math.floor(sec) % 60}s`)
-  return str.join(' ')
+function fmtDate(date: Date): string {
+    const leftPad = (num: Number) => num.toString().padStart(2, '0')
+    return [
+        date.getFullYear(),
+        leftPad(date.getMonth() + 1),
+        leftPad(date.getDate()),
+    ].join('')
 }
