@@ -21,7 +21,7 @@ export default function Chart() {
     labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
     datasets: [{
       backgroundColor: '#bfdbfe',
-      data: [12, 3, 17, 18, 6, 20, 8, 1, 11, 4, 13, 2, 10, 15]
+      data: [17, 18, 6, 12, 3, 20, 8, 1, 11, 4, 13, 2, 10, 15]
     }]
   }
 
