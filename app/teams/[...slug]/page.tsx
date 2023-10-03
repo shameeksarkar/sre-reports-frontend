@@ -21,12 +21,12 @@ export default async function Team({ params }: { params: { slug: string[] } }) {
       <br />
 
       <h1 className='text-2xl font-medium mb-2'>Alerts </h1>
-      <div className='grid grid-cols-5 gap-2'>
+      <div className='grid grid-cols-4 gap-2'>
         {alerts.map(metric =>
-          <div className='relative rounded-md border border-slate-200 bg-slate-50 p-2 overflow-hidden hover:shadow-lg'>
+          <div className='relative rounded-md border border-slate-200 p-4 overflow-hidden hover:shadow-lg'>
             <p className='text-2xl font-medium inline'>{metric.value}</p>
-            <p className='text-sm font-medium text-slate-400 inline'> {metric.meta}</p>
-            <p className='text-sm font-medium text-slate-400'>{metric.title}</p>
+            <p className='text-slate-400 inline'> {metric.meta}</p>
+            <p className='text-slate-400'>{metric.title}</p>
             <Badge badge={metric.badge} />
 
             <div className='absolute bottom-0 right-1'>
