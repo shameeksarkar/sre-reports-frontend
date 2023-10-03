@@ -1,5 +1,15 @@
 export default async function Badge({ badge }: { badge: string }) {
-  if (badge == 'good') return <span className='bg-green-100 border border-green-200 rounded-xl text-green-600 text-sm font-medium px-2 inline-block'>Good</span>
-  if (badge == 'poor') return <span className='bg-red-100 border border-red-200 rounded-xl text-red-600 text-sm font-medium px-2 inline-block'>Poor</span>
-  return <span />
+  const statusImage = () => {
+    return (
+      <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 28' strokeWidth={4} stroke='currentColor' className='w-4 h-4 inline'>
+        <path strokeLinecap='round' strokeLinejoin='round' d='M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3' />
+      </svg>
+    )
+  }
+  
+  return (
+    <p className='leading-4 text-sm text-slate-400'>
+      <span className='text-emerald-500 font-bold'>{statusImage()}8.2% </span> 
+      than last week</p>
+  )
 }
