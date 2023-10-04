@@ -4,6 +4,7 @@ import { fetchTeam } from '@/libs/teams/api'
 import { fetchAlerts } from '@/libs/alerts/api'
 import { formatDate, parseDate } from '@/libs/utils/date'
 import Chart from './chart'
+import Stage from './uptime'
 
 export default async function Team({ params }: { params: { slug: string[] } }) {
   const [name, ts] = params.slug
@@ -31,6 +32,10 @@ export default async function Team({ params }: { params: { slug: string[] } }) {
           </div>
         )}
       </div>
+      
+      <br />
+      <h1 className='text-2xl font-medium mb-2'>Uptime</h1>
+      <Stage />
     </main >
   )
 }
