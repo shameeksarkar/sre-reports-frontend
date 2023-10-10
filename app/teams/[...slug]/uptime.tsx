@@ -13,7 +13,7 @@ export default function Stage() {
 
   const data = (data: number) => {
     // return <span className='text-xs text-emerald-500 border border-emerald-200 bg-emerald-50 rounded-xl px-2 py-1'>{data}</span>
-    return <span className='text-sm font-medium text-emerald-500'>{data}</span>
+    return <span className='text-emerald-600'>{data}</span>
   }
 
   return (
@@ -35,12 +35,14 @@ export default function Stage() {
                 <td className='p-2'>{service}</td>
 
                 <td className='px-2 w-16'>{Badge}</td>
-                <td className='w-16 p-2'>{data(99.63)}</td>
-                <td className='w-16 p-2'>{data(98.55)}</td>
-                <td className='w-16 p-2'>{data(77.74)}</td>
+                <td className='w-16 p-2 bg-emerald-50'>{data(99.63)}</td>
+                <td className='w-16 p-2 bg-emerald-50'>{data(98.55)}</td>
+                <td className='w-24 p-2'>12m 30s</td>
+                {/* <td className='w-16 p-2'>{data(77.74)}</td>
                 <td className='w-16 p-2'>{data(90.25)}</td>
                 <td className='w-16 p-2'>{data(90.25)}</td>
                 <td className='w-16 p-2'>{data(99.97)}</td>
+                <td className='w-16 p-2'>{data(97.32)}</td> */}
                 <td className='w-28 pr-6'><Spark /></td>
               </tr>
             ))

@@ -1,8 +1,8 @@
-import { AlertsResponse } from "./metric"
+import { AlertsResponse } from "./alert"
 
-export async function fetchAlerts(team: string, date: Date): Promise<AlertsResponse> {
+export async function fetchAlerts(date: Date, team: string): Promise<AlertsResponse> {
     const params = new URLSearchParams({ 'team': team, 'date': fmtDate(date) })
-    const response = await fetch('http://0.0.0.0:8000/alerts?' + params, { method: 'GET'})
+    const response = await fetch('http://0.0.0.0:8000/v2/alerts?' + params, { method: 'GET'})
     return response.json()
 }
 
